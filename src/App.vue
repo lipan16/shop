@@ -1,30 +1,14 @@
 <template>
-  <div>
-    <v-header></v-header>
-    <div class="tab">
-      <div class="tab-item">
-        商品
-      </div>
-      <div class="tab-item">
-        评论
-      </div>
-      <div class="tab-item">
-        商家
-      </div>
-    </div>
-
+  <div id="app">
+    <img src="./assets/logo.png">
+    <router-view/>
   </div>
 </template>
 
 <script>
-import header from 'components/header/header';
-
 export default {
-  components: {
-    'v-header': header
-  }
-};
-
+  name: 'App'
+}
 </script>
 
 <style>
