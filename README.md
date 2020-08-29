@@ -1,4 +1,4 @@
-# ss
+# shop
 
 > A Vue.js project
 
