@@ -2,9 +2,15 @@
   <div id="app">
     <l-header></l-header>
     <div class="tab">
-      <div class="tab-item">商品</div>
-      <div class="tab-item">评价</div>
-      <div class="tab-item">商家</div>
+      <div class="tab-item">
+        <router-link to="/goods">商品</router-link>
+      </div>
+      <div class="tab-item">
+        <router-link to="/ratings">评价</router-link>
+      </div>
+      <div class="tab-item">
+        <router-link to="/seller">商家</router-link>
+      </div>
     </div>
     <router-view/>
   </div>
@@ -14,6 +20,11 @@
 import header from './components/header/header'
 
 export default {
+  data(){
+    return {
+      seller: {}
+    }
+  },
   components: {
     'l-header': header
   }
@@ -21,15 +32,32 @@ export default {
 </script>
 
 <style>
+* {
+  margin  : 0;
+  padding : 0;
+}
+
 .tab {
-  width       : 100%;
-  height      : 40px;
-  line-height : 40px;
-  display     : flex;
+  width         : 100%;
+  height        : 40px;
+  line-height   : 40px;
+  display       : flex;
+  border-bottom : 1px solid rgba(7, 17, 24, 0.1);
 }
 
 .tab-item {
   flex       : 1;
   text-align : center;
+}
+
+.tab-item > a {
+  display         : inline;
+  text-decoration : none;
+  font-size       : 14px;
+  color           : rgb(77, 85, 93);
+}
+
+.active {
+  color : rgb(240, 20, 20);
 }
 </style>
