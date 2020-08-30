@@ -1,6 +1,8 @@
 <template>
   <div id="app">
     <l-header></l-header>
+    <button @click="getAxiosData()">测试axios</button>
+    <button @click="getGoodsMock()">测试mock</button>
     <div class="tab">
       <div class="tab-item">
         <router-link to="/goods">商品</router-link>
@@ -18,6 +20,8 @@
 
 <script>
 import header from './components/header/header'
+import axios from 'axios'
+import mock from './mockjs/mock'
 
 export default {
   data(){
@@ -27,6 +31,20 @@ export default {
   },
   components: {
     'l-header': header
+  },
+  methods: {
+    getAxiosData(){
+      axios.get('http://iwenwiki.com/api/blueberrypai/getChengpinDetails.php')
+        .then(res => {
+          console.log(res)
+        })
+    },
+    getGoodsMock(){
+      axios.get('http://localhost:8080/goods')
+        .then(res => {
+          console.log(res.data)
+        })
+    }
   }
 }
 </script>
