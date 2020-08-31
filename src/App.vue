@@ -21,6 +21,7 @@
 <script>
 import header from './components/header/header'
 import axios from 'axios'
+// eslint-disable-next-line no-unused-vars
 import mock from './mockjs/mock'
 
 export default {

@@ -1,5 +1,5 @@
 import Mock from 'mockjs'
-import rules from 'rules'
+import rules from './rules.js'
 
 Mock.mock('http://localhost:8080/goods', 'get', {
   'name': '@cname',
@@ -11,4 +11,4 @@ Mock.mock('invoke.jsp', 'post', uri => {
   return Mock.mock(rules[uri])
 })
 
-Mock.setup({timeout: 2000})
+// Mock.setup({timeout: 2000})
