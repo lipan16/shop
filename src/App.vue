@@ -29,9 +29,6 @@ export default {
       seller: {}
     }
   },
-  components: {
-    'l-header': header
-  },
   methods: {
     getAxiosData(){
       axios.get('http://iwenwiki.com/api/blueberrypai/getChengpinDetails.php')
@@ -45,6 +42,9 @@ export default {
           console.log(res.data)
         })
     }
+  },
+  components: {
+    'l-header': header
   }
 }
 </script>
