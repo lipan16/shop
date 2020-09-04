@@ -7,7 +7,7 @@ Mock.mock('http://localhost:8080/goods', 'get', {
   'age|10-30': 1
 })
 
-Mock.mock('invoke.jsp', 'post', uri => {
+Mock.mock(/\/invoke.jsp/, 'get', uri => {
   return Mock.mock(rules[uri])
 })
 

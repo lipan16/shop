@@ -1,5 +1,5 @@
 {
-  "name": "ss",
+  "name": "shop",
   "version": "1.0.0",
   "description": "A Vue.js project",
   "author": "lipan16 <lipan16@lzu.edu.cn>",
@@ -14,7 +14,8 @@
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "axios": "^0.20.0",
-    "mockjs": "^1.1.0"
+    "mockjs": "^1.1.0",
+    "vant": "^2.10.4"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
