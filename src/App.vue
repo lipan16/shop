@@ -20,7 +20,7 @@
 
 <script>
 import header from './components/header/header'
-import axios from 'axios'
+import axios from './api/axiosRequest'
 
 export default {
   data(){
@@ -36,12 +36,12 @@ export default {
         })
     },
     getGoodsMock(){
-      axios.get('goods')
-        .then(res => {
-          console.log(res.data)
-        }).catch(err => {
-          console.log(err)
-        })
+      debugger
+      axios({url: 'getChengpinDetails.php', method: 'post'}).then(res => {
+        console.info(res)
+      }).catch(err => {
+        console.error(err)
+      })
     }
   },
   components: {
