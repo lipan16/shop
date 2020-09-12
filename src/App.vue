@@ -36,7 +36,6 @@ export default {
         })
     },
     getGoodsMock(){
-      debugger
       axios({url: 'getChengpinDetails.php', method: 'post'}).then(res => {
         console.info(res)
       }).catch(err => {
