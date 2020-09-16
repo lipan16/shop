@@ -25,7 +25,6 @@ import axios from './api/axiosRequest'
 export default {
   data(){
     return {
-      seller: {}
     }
   },
   methods: {
