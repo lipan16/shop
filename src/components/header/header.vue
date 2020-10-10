@@ -12,7 +12,7 @@
         <div class="description">5分钟送达</div>
         <div class="support">
           <span class="icon"></span>
-          <span class="text">满10减5</span>
+          <span class="text">满10减5啊啊啊啊啊</span>
         </div>
       </div>
     </div>
@@ -20,7 +20,10 @@
 </template>
 
 <script>
-export default {}
+export default {
+
+}
+
 </script>
 
 <style lang="less" scoped>
