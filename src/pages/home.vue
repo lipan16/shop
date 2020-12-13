@@ -10,7 +10,7 @@
             <van-tabs swipeable animated>
                 <van-tab v-for="index in 4" :title="'选项'+index" :key="index">
                     <div class="test">
-                        <van-steps direction="vertical" :active="0">
+                        <van-steps direction="vertical">
                             <van-step v-for="i in 3" :key="i">
                                 <h4>{{ i }} i</h4>
                             </van-step>
@@ -19,24 +19,25 @@
                 </van-tab>
             </van-tabs>
         </div>
-        <div class="box3">
-            <van-button round>提交</van-button>
-        </div>
-        <div class="box4">
-            <van-cell center is-link title="类型" :value="optValue" @click="show = true"/>
-            <van-action-sheet close-on-popstate description="类型" v-model="show" :actions="option1"
-                              @select="onSelected"/>
+<!--        <div class="box3">-->
+<!--            <van-button round>提交</van-button>-->
+<!--        </div>-->
 
-            <van-cell center is-link title="日期" :value="dateValue | dateFormat('yy/MM')"
-                      @click="showDate = true"/>
-            <van-popup v-model="showDate" round position="bottom">
-                <van-datetime-picker v-model="currentDate" type="year-month" :min-date="minDate"
-                                     :max-date="maxDate" :formatter="formatter" @confirm="selectDate"
-                                     @cancel="showDate = false"/>
-            </van-popup>
-            <el-date-picker v-model="month" type="month" placeholder="请选择月"></el-date-picker>
+<!--        <div class="box4">-->
+<!--            <van-cell center is-link title="类型" :value="optValue" @click="show = true"/>-->
+<!--            <van-action-sheet close-on-popstate description="类型" v-model="show" :actions="option1"-->
+<!--                              @select="onSelected"/>-->
 
-        </div>
+<!--            <van-cell center is-link title="日期" :value="dateValue | dateFormat('yy/MM')"-->
+<!--                      @click="showDate = true"/>-->
+<!--            <van-popup v-model="showDate" round position="bottom">-->
+<!--                <van-datetime-picker v-model="currentDate" type="year-month" :min-date="minDate"-->
+<!--                                     :max-date="maxDate" :formatter="formatter" @confirm="selectDate"-->
+<!--                                     @cancel="showDate = false"/>-->
+<!--            </van-popup>-->
+<!--            <el-date-picker v-model="month" type="month" placeholder="请选择月"></el-date-picker>-->
+
+<!--        </div>-->
     </div>
 </template>
 
@@ -61,7 +62,8 @@ export default {
             minDate    : new Date(1970, 0, 1),
             maxDate    : new Date(2099, 11, 1),
             currentDate: new Date(),
-            month      : ''
+            month      : '',
+
         }
     },
     methods: {
@@ -100,9 +102,9 @@ export default {
 
         .test {
             //flex: 1;
-            height                     : 191px;
-            overflow-y                 : scroll;
-            -webkit-overflow-scrolling : auto;
+            height                     : 345px;
+            //overflow-y                 : scroll;
+            //-webkit-overflow-scrolling : auto;
         }
     }
 

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>todo list</title>
+    <style>
+        .empty {
+            border-color : red;
+        }
+
+        .completed {
+            text-decoration : line-through;
+        }
+
+        .selected {
+            color : red;
+        }
+
+        .todoList {
+            margin  : 15px 0;
+            display : flex;
+        }
+
+        .titleCss {
+            width : 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="todo-app">
+    <div>
+        <input type="button" value="全部标为完成" v-if="allCompleted" v-on:click="markAllAsCompleted()">
+        <input type="button" value="全部标未完成" v-else v-on:click="markAllAsUncompleted()">
+        <input type="button" value="撤销" v-if="hashRemovedTodo" @click="restoreTodo()">
+        <input type="text" placeholder="添加 todo"
+               :class="{empty: emptyCheck}"
+               v-model="newTodoTitle"
+               @keyup.enter="addTodo()">
+        <span v-if="emptyCheck" style="color: red">请输入内容</span>
+    </div>
+
+    <!-- todo list -->
+    <div class="todoList" v-for="todo in filteredTodos" :key="todo.id">
+        <div :class="{titleCss: true, completed: todo.completed}" @dblclick="editTodo(todo)">{{ todo.title }}</div>
+        <input type="button" value="标为完成"
+               v-if="!todo.completed"
+               v-on:click="markAsCompleted(todo)">
+        <input type="button" value="标为未完成"
+               v-else
+               v-on:click="markAsUncompleted(todo)">
+        <input type="button" value="删除"
+               v-on:click="removeTodo(todo)">
+        <input type="text" value="编辑 todo..."
+               v-if="editedTodo !== null && editedTodo.id === todo.id"
+               v-model="todo.title"
+               v-edit-todo-focus="true"
+               @blur="loseFocus(todo)"
+               @keyup.enter="editDone(todo)"
+               @keyup.esc="cancelEdit(todo)">
+    </div>
+
+    <!-- end todo list -->
+    <div>
+        <span v-if="leftTodosCount">剩余 {{ leftTodosCount }} 项未完成 ---</span>
+        <span v-else-if="completedTodosCount">全部完成，你真是太优秀了！</span>
+        <span v-else>添加我的第一个todo</span>
+        <span>筛选：
+			<input type="button" value="全部" :class="{selected: intention==='all'}" @click="intention = 'all'">
+			<input type="button" value="进行中" v-if="leftTodosCount" :class="{selected: intention==='ongoing'}"
+                   @click="intention = 'ongoing'">
+			<input type="button" value="已完成" v-if="completedTodosCount" :class="{selected: intention==='completed'}"
+                   @click="intention = 'completed'">
+            <br>
+			<input type="button" value="清除已完成" v-if="completedTodosCount" @click="clearCompleted()">
+			<input type="button" value="清除全部" @click="clearAll()">
+		</span>
+    </div>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    let id = 3
+    let app = new Vue({
+        el: "#todo-app",
+        data: function(){//数据
+            return {
+                todos: [
+                    {id: 0, title: "学习 Vue", completed: false},
+                    {id: 1, title: "赚钱", completed: false},
+                    {id: 2, title: "娶冰冰", completed: false},
+                ],//todo list
+                newTodoTitle: "",//todo title
+                checkEmpty: false,//添加todo回车时是否空
+                removedTodoStack: [],//保存删除的todos
+                editedTodo: null,//用于暂存编辑前的todo状态
+                allCompleted: true,//用于显示是否全部标为完成
+                intention: "all",//用于筛选
+            }
+        },
+        methods: {//方法
+            addTodo: function(){//增加todo list
+                if(this.newTodoTitle.length > 0){
+                    this.todos.push({id: id++, title: this.newTodoTitle, completed: false, removed: false})
+                    this.newTodoTitle = ""
+                    this.checkEmpty = false
+                }else{
+                    this.checkEmpty = true
+                }
+            },
+            markAsCompleted: function(todo){//标为完成
+                todo.completed = true
+            },
+            markAsUncompleted: function(todo){//标为未完成
+                todo.completed = false
+            },
+            markAllAsCompleted: function(){//全部标为完成
+                this.todos.map(function(todo){
+                    if(!todo.completed){
+                        todo.completed = true
+                    }
+                })
+                this.allCompleted = false
+            },
+            markAllAsUncompleted: function(){
+                this.todos.map(function(todo){
+                    if(todo.completed){
+                        todo.completed = false
+                    }
+                })
+                this.allCompleted = true
+            },
+            removeTodo: function(todo){//删除todo
+                // if (!confirm("是否删除？")) {
+                // 	return
+                // }
+                let pos = this.todos.indexOf(todo)//保存todo 原先的位置
+                let removedTodo = {
+                    pos: pos,
+                    todo: todo,//获取删除的todo
+                }
+                this.todos.splice(pos, 1)
+                this.removedTodoStack.push(removedTodo)//删除的todo入栈
+            },
+            restoreTodo: function(){//撤销删除
+                let todo = this.removedTodoStack.pop()//出栈
+                let pos = todo.pos//位置
+                let restored = todo.todo//todo
+                this.todos.splice(pos, 0, restored)//插入到todos中并显示
+            },
+            editTodo: function(todo){//编辑todo
+                this.editedTodo = {id: todo.id, title: todo.title, completed: todo.completed}
+            },
+            editDone: function(todo){//编辑todo完成
+                if(todo.title === ""){
+                    todo.title = this.editedTodo.title
+                }
+                this.editedTodo = null
+            },
+            cancelEdit: function(todo){//取消编辑
+                todo.title = this.editedTodo.title
+                this.editedTodo = null
+            },
+            loseFocus: function(todo){//失去焦点时编辑todo完成
+                this.editDone(todo)
+            },
+            clearCompleted: function(){//清除所有已完成的todo
+                this.todos.map(todo => {
+                    if(todo.completed){
+                        let pos = this.todos.indexOf(todo)//保存todo 原先的位置
+                        let removedTodo = {
+                            pos: pos,
+                            todo: todo,//获取删除的todo
+                        }
+                        this.removedTodoStack.push(removedTodo)//删除的todo加入到开头
+                        this.todos.splice(pos,1)//删除todo
+                    }
+                })
+            },
+            clearAll: function(){//清除所有todo
+                this.todos.map(todo => {
+                    let pos = this.todos.indexOf(todo)//保存todo 原先的位置
+                    console.log(pos)
+                    console.log(todo.title)
+                    let removedTodo = {
+                        pos: pos,
+                        todo: todo,//获取删除的todo
+                    }
+                    this.removedTodoStack.unshift(removedTodo)//删除的todo加入到开头
+                })
+                this.todos = []
+            },
+        },
+        computed: {//计算属性
+            emptyCheck: function(){//输入todo为空时提示
+                return this.newTodoTitle.length === 0 && this.checkEmpty
+            },
+            hashRemovedTodo: function(){//是否显示撤销删除按钮
+                return this.removedTodoStack.length
+            },
+            leftTodos: function(){//返回未做的todos
+                return this.todos.filter(todo => !todo.completed)
+            },
+            completedTodos: function(){//返回已做的todos
+                return this.todos.filter(todo => todo.completed)
+            },
+            leftTodosCount: function(){//未做的todo项数
+                return this.leftTodos.length
+            },
+            completedTodosCount: function(){//已做的todo项数
+                return this.completedTodos.length
+            },
+            filteredTodos: function(){//筛选
+                if(this.intention === "completed"){//已完成
+                    return this.completedTodos
+                }else if(this.intention === "ongoing"){//未完成
+                    return this.leftTodos
+                }else{//全部
+                    return this.todos
+                }
+            },
+        },
+        directives: {//自注册局部指令 使用v-edit-todo-focus
+            editTodoFocus: {//自动获取焦点
+                inserted: function(el){
+                    el.focus()
+                },
+            },
+        },
+    })
+</script>
+</body>
+</html>
