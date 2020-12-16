@@ -12,20 +12,20 @@ import filter from './filter'
 Vue.config.productionTip = false
 Vue.use(Vant)
 Vue.use(ElementUI)
-process.env.VUE_APP_MOCK !== '0' && require('./mock/mock.js')
-new Promise((resolve, reject) => {
-    // eslint-disable-next-line no-constant-condition
-    if(process.env.VUE_APP_USEPROXY === '1'){
-        console.log(process.env.VUE_APP_USEPROXY)
-        resolve()
-    }else{
-        reject()
-    }
-}).then(() => {
+
+// new Promise((resolve, reject) => {
+//     // eslint-disable-next-line no-constant-condition
+//     if(process.env.VUE_APP_PROXY === '1'){
+//         console.log(process.env.VUE_APP_USEPROXY)
+//         resolve()
+//     }else{
+//         reject()
+//     }
+// }).then(() => {
     new Vue({
         store : store,
         router: router,
         filter: filter,
         render: h => h(App),
     }).$mount('#app')
-})
+// })
