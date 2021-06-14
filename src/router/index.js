@@ -1,15 +1,20 @@
-import Vue    from 'vue'
+import Vue from 'vue'
 import Router from 'vue-router'
-import Home   from '../pages/home'
+import Home from '../pages/home'
 
 Vue.use(Router)
 const router = new Router({
     linkActiveClass: 'active',
     mode: 'history',
-    routes: [{
-        path: '/',
-        component: Home
-    }
+    routes: [
+        {
+            path: '/',
+            component: () => import('../pages/sy.vue')
+        },
+        {
+            path: '/home',
+            component: Home
+        }
     ]
 })
 // router.beforeEach((to, from, next) => {

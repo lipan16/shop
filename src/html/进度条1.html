@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>进度条1</title>
+    <style>
+        #wrapper{
+            position      : absolute;
+            top           : 30px;
+            left          : 50%;
+            transform     : translateX(-50%);
+            width         : 500px;
+            height        : 30px;
+            border        : 5px solid #53a2fe;
+            border-radius : 20px;
+        }
+
+        #fill{
+            height           : 30px;
+            width            : 0;
+            border-radius    : 20px;
+            background-image : linear-gradient(-45deg, #2cbbff 0px, #2cbbff 5px, #0467de 5px, #0467de 10px,
+            #2cbbff 10px, #2cbbff 15px, #0467de 15px, #0467de 20px);
+            background-size  : 15px 15px;
+        }
+
+        #slider{
+            position        : absolute;
+            top             : 10px;
+            left            : 10%;
+            transform       : translateX(-50%);
+            height          : 50px;
+            width           : 50px;
+            /*background      : url('../assets/logo.png') no-repeat center center;*/
+            background-size : 100%;
+        }
+    </style>
+    <script>
+        let a =0
+        let timer= setInterval(function(){
+            a+=10
+            document.getElementById('fill').style.width=a+'%'
+            document.getElementById('slider').style.top=a+'%'
+            if(a>=100){
+                a=0
+                // clearInterval(timer)
+            }
+        },2000)
+    </script>
+</head>
+<body>
+<div id="wrapper">
+    <div id="fill"></div>
+    <div id="slider"></div>
+</div>
+</body>
+</html>
