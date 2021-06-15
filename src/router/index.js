@@ -9,6 +9,10 @@ const router = new Router({
     routes: [
         {
             path: '/',
+            component: () => import('../pages/hx.vue')
+        },
+        {
+            path: '/sy',
             component: () => import('../pages/sy.vue')
         },
         {
