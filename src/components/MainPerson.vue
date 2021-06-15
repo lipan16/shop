@@ -36,7 +36,6 @@ export default {
 .cBody{
     display       : flex;
     flex-wrap     : wrap;
-    //justify-content : space-around;
     align-content : flex-start;
 
     > :nth-child(3n-2){

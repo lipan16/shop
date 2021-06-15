@@ -4,9 +4,9 @@
             <div class="titleZh">上海市爱翻译股份有限公司</div>
             <div class="titleEn">Shanghai aifanyi Co., Ltd</div>
         </div>
-        <van-tabs v-model="tabActive" sticky animated swipeable background="none" color="#FFFFFF"
+        <van-tabs v-model="tabActive" animated swipeable background="none" color="#FFFFFF"
                   title-active-color="#FFFFFF" title-inactive-color="#ffffff">
-            <van-tab title="基础信息">
+            <van-tab title="基础信息" style="overflow: scroll; height: 547px">
                 <van-collapse v-model="colActive">
                     <van-collapse-item :is-link="false">
                         <template #title>
@@ -43,9 +43,15 @@
                     </van-collapse-item>
                 </van-collapse>
 
-                <MainPerson :mainPerson="mainPerson" />
+                <MainPerson :mainPerson="mainPerson"/>
+                <BaseItem :baseItem="corporateBranch"/>
+                <BaseItem :baseItem="changeLog"/>
+                <ContactInfo :contactInfo="contactInfo" />
             </van-tab>
-            <van-tab title="股东信息"></van-tab>
+            <van-tab title="股东信息">
+                <FundInfo :fundInfo="fundInfo" />
+                <BaseItem :baseItem="otherCompanyPostInfo" />
+            </van-tab>
             <van-tab title="企业对外信息"></van-tab>
             <van-tab title="年报信息"></van-tab>
             <van-tab title="法律风险"></van-tab>
@@ -55,16 +61,23 @@
 </template>
 
 <script>
-import MainPerson from '../components/MainPerson.vue'
+import MainPerson from "../components/MainPerson"
+import BaseItem from "../components/BaseItem";
+import ContactInfo from "../components/ContactInfo";
+import FundInfo from "../components/FundInfo";
+
 export default {
     name: "hx",
-    components:{
+    components: {
+        FundInfo,
+        ContactInfo,
+        BaseItem,
         MainPerson
     },
     data(){
         return {
-            tabActive: 0,
-            colActive: [],
+            tabActive: 1, // 激活的tab
+            colActive: [], // 基础信息 --> 工商信息是否展开
             mainPerson: {
                 title: "主要人员",
                 data: [
@@ -74,6 +87,80 @@ export default {
                     {name: "王逸一", post: "董事"},
                     {name: "王逸一", post: "董事"},
                     {name: "王逸一", post: "董事"},
+                ]
+            },
+            corporateBranch: {
+                title: "企业分支机构",
+                data: [
+                    {
+                        title: "科学研究及技术服务业", value: "12", data: [
+                            {name: "统一社会信用代码", value: "189271982901829"},
+                            {name: "统一社会信用代码", value: "189271982901829"},
+                        ]
+                    }, {
+                        title: "科学研究及技术服务业", data: [
+                            {name: "统一社会信用代码", value: "189271982901829"},
+                            {name: "统一社会信用代码", value: "189271982901829"},
+                        ]
+                    },
+                ]
+            },
+            changeLog: {
+                title: "变更记录",
+                data: [
+                    {
+                        title: "科学研究及技术服务业", data: [
+                            {name: "变更日期", value: "2021.3.21"},
+                            {name: "变更前", value: "变更前"},
+                            {name: "变更后", value: "变更后"},
+                        ]
+                    }, {
+                        title: "科学研究及技术服务业", data: [
+                            {name: "变更日期", value: "2021.3.21"},
+                            {name: "变更前", value: "变更前"},
+                            {name: "变更后", value: "变更后"},
+                        ]
+                    },
+                ]
+            },
+            contactInfo: {
+                title: "联系信息",
+                data: [
+                    {title: "电话", value: "电话"},
+                    {title: "邮箱", value: "邮箱"},
+                    {title: "网址", value: "网址"},
+                    {title: "地址", value: "地址"},
+                ]
+            },
+            fundInfo: {
+                title: "股东出资信息",
+                data: [
+                    {name: "陈XX", fund: "500", ratio: "51%", date: "2021.5.31"},
+                    {name: "陈XX", fund: "500", ratio: "51%", date: "2021.5.31"},
+                    {name: "陈XX", fund: "500", ratio: "51%", date: "2021.5.31"},
+                    {name: "陈XX", fund: "500", ratio: "51%", date: "2021.5.31"},
+                ]
+            },
+            otherCompanyPostInfo: {
+                title: "法人其他公司职位信息",
+                data: [
+                    {
+                        title: "企业名称展示在这里", data: [
+                            {name: "企业类型", value: "企业类型.3.21"},
+                            {name: "企业状态", value: "企业状态"},
+                            {name: "法定代表人", value: "法定代表人"},
+                            {name: "注册资本", value: "注册资本"},
+                            {name: "职务", value: "职务"},
+                        ]
+                    }, {
+                        title: "企业名称展示在这里", data: [
+                            {name: "企业类型", value: "企业类型.3.21"},
+                            {name: "企业状态", value: "企业状态"},
+                            {name: "法定代表人", value: "法定代表人"},
+                            {name: "注册资本", value: "注册资本"},
+                            {name: "职务", value: "职务"},
+                        ]
+                    },
                 ]
             }
         }
