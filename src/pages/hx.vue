@@ -14,8 +14,10 @@
                                       title-style="font-family: PingFangSC-Semibold;
                                       font-size: 14px;color: #323233; margin-top: 16px" is-link>
                                 <template #title>
-                                    <span style="border-right: solid #5580d8 3px; margin-right: 4px;"></span>
-                                    <span>工商信息</span>
+                                    <div style="display: flex; align-items: center">
+                                        <div style="margin-right: 4px; width: 3px; height: 14px; background: #5580d8"></div>
+                                        <div>工商信息</div>
+                                    </div>
                                 </template>
                             </van-cell>
                             <van-divider/>
@@ -40,6 +42,8 @@
                         <van-cell :border="false" title="经营范围" value="经营范围"/>
                     </van-collapse-item>
                 </van-collapse>
+
+                <MainPerson :mainPerson="mainPerson" />
             </van-tab>
             <van-tab title="股东信息"></van-tab>
             <van-tab title="企业对外信息"></van-tab>
@@ -51,12 +55,27 @@
 </template>
 
 <script>
+import MainPerson from '../components/MainPerson.vue'
 export default {
     name: "hx",
+    components:{
+        MainPerson
+    },
     data(){
         return {
             tabActive: 0,
             colActive: [],
+            mainPerson: {
+                title: "主要人员",
+                data: [
+                    {name: "王逸一", post: "董事"},
+                    {name: "王逸一", post: "企业法人"},
+                    {name: "王逸一", post: "财务总监"},
+                    {name: "王逸一", post: "董事"},
+                    {name: "王逸一", post: "董事"},
+                    {name: "王逸一", post: "董事"},
+                ]
+            }
         }
     }
 }

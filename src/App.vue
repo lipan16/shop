@@ -29,4 +29,10 @@ body{
     width: 100%;
     display: flex;
 }
+.text-overflow{
+    word-break:keep-all;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
 </style>
