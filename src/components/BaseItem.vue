@@ -1,6 +1,6 @@
 <template>
     <div class="content">
-        <div style="height: 12px; background: rgba(31,90,147,0.10);"></div>
+        <div v-show="show" style="height: 12px; background: rgba(31,90,147,0.10);"></div>
         <van-cell :border="false"
                   title-style="font-family: PingFangSC-Semibold; font-size: 14px;color: #323233; margin-top: 16px">
             <template #title>
@@ -28,7 +28,11 @@
 export default {
     name: "BaseItem",
     props: {
-        baseItem: {}
+        baseItem: {},
+        show: {
+            type: Boolean,
+            default: true
+        },
     },
 }
 </script>

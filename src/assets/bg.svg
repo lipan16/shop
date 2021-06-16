@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="375px" height="153px" viewBox="0 0 375 153" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="375px" height="114px" viewBox="0 0 375 114" version="1.1" xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>蓝色背景</title>
     <defs>
-        <linearGradient x1="7.78105773%" y1="42.7529092%" x2="88.5600076%" y2="52.6478131%" id="linearGradient-1">
+        <linearGradient x1="7.78105773%" y1="45.5419665%" x2="88.5600076%" y2="51.628797%" id="linearGradient-1">
             <stop stop-color="#7CA7FF" offset="0%"></stop>
             <stop stop-color="#5580D8" offset="100%"></stop>
         </linearGradient>
-        <polygon id="path-2" points="9.99200722e-13 153 375 153 375 0 -3.32416386e-13 0"></polygon>
+        <polygon id="path-2" points="9.99200722e-13 120 375 120 375 0 -3.32416386e-13 0"></polygon>
     </defs>
     <g id="ui备份" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="01基础信息" transform="translate(0.000000, -64.000000)">

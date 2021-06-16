@@ -6,7 +6,7 @@
         </div>
         <van-tabs v-model="tabActive" animated swipeable background="none" color="#FFFFFF"
                   title-active-color="#FFFFFF" title-inactive-color="#ffffff">
-            <van-tab title="基础信息" style="overflow: scroll; height: 547px">
+            <van-tab title="基础信息">
                 <van-collapse v-model="colActive">
                     <van-collapse-item :is-link="false">
                         <template #title>
@@ -46,16 +46,33 @@
                 <MainPerson :mainPerson="mainPerson"/>
                 <BaseItem :baseItem="corporateBranch"/>
                 <BaseItem :baseItem="changeLog"/>
-                <ContactInfo :contactInfo="contactInfo" />
+                <ContactInfo :contactInfo="contactInfo"/>
             </van-tab>
             <van-tab title="股东信息">
-                <FundInfo :fundInfo="fundInfo" />
-                <BaseItem :baseItem="otherCompanyPostInfo" />
+                <FundInfo :fundInfo="fundInfo"/>
+                <BaseItem :baseItem="otherCompanyPostInfo"/>
             </van-tab>
-            <van-tab title="企业对外信息"></van-tab>
-            <van-tab title="年报信息"></van-tab>
-            <van-tab title="法律风险"></van-tab>
-            <van-tab title="经营风险"></van-tab>
+            <van-tab title="企业对外信息">
+                <BaseItem :show="false" :baseItem="comExternalFund"/>
+                <BaseItem :base-item="perExternalFund"/>
+            </van-tab>
+            <van-tab title="年报信息">
+                <ContactInfo :show="false" :contact-info="socialSecurityInfo"/>
+                <ContactInfo :contact-info="manageInfo"/>
+                <BaseItem :base-item="yearFundInfo"/>
+                <BaseItem :base-item="equityChange"/>
+                <BaseItem :base-item="externalGuarantee"/>
+            </van-tab>
+            <van-tab title="法律风险">
+                <BaseItem :show="false" :base-item="comExternalFund"/>
+                <BaseItem :base-item="dishonestyPerInfo"/>
+            </van-tab>
+            <van-tab title="经营风险">
+                <BaseItem :show="false" :base-item="seriouslyIllegal"/>
+                <BaseItem :base-item="abnormalOperation"/>
+                <BaseItem :base-item="administrativePenalties"/>
+                <BaseItem :base-item="equityPledge"/>
+            </van-tab>
         </van-tabs>
     </div>
 </template>
@@ -162,7 +179,285 @@ export default {
                         ]
                     },
                 ]
-            }
+            },
+            comExternalFund: {
+                title: "企业对外投资",
+                data: [
+                    {
+                        title: "企业名称展示在这里", data: [
+                            {name: "统一社会信用代码", value: "统一社会信用代码"},
+                            {name: "企业类型", value: "企业类型.3.21"},
+                            {name: "法定代表人", value: "法定代表人"},
+                            {name: "注册资金", value: "注册资金"},
+                            {name: "注册资金币种", value: "注册资金币种"},
+                            {name: "注销日期", value: "注销日期"},
+                            {name: "企业状态", value: "企业状态"},
+                        ]
+                    }, {
+                        title: "企业名称展示在这里", data: [
+                            {name: "统一社会信用代码", value: "统一社会信用代码"},
+                            {name: "企业类型", value: "企业类型.3.21"},
+                            {name: "法定代表人", value: "法定代表人"},
+                            {name: "注册资金", value: "注册资金"},
+                            {name: "注册资金币种", value: "注册资金币种"},
+                            {name: "注销日期", value: "注销日期"},
+                            {name: "企业状态", value: "企业状态"},
+                        ]
+                    },
+                ]
+            },
+            perExternalFund: {
+                title: "法人对外投资信息",
+                data: [
+                    {
+                        title: "企业名称展示在这里", data: [
+                            {name: "统一社会信用代码", value: "统一社会信用代码"},
+                            {name: "企业类型", value: "企业类型.3.21"},
+                            {name: "法定代表人", value: "法定代表人"},
+                            {name: "注册资金", value: "注册资金"},
+                            {name: "注册资金币种", value: "注册资金币种"},
+                            {name: "注销日期", value: "注销日期"},
+                            {name: "企业状态", value: "企业状态"},
+                        ]
+                    }, {
+                        title: "企业名称展示在这里", data: [
+                            {name: "统一社会信用代码", value: "统一社会信用代码"},
+                            {name: "企业类型", value: "企业类型.3.21"},
+                            {name: "法定代表人", value: "法定代表人"},
+                            {name: "注册资金", value: "注册资金"},
+                            {name: "注册资金币种", value: "注册资金币种"},
+                            {name: "注销日期", value: "注销日期"},
+                            {name: "企业状态", value: "企业状态"},
+                        ]
+                    },
+                ]
+            },
+            socialSecurityInfo: {
+                title: "年报-社保信息",
+                data: [
+                    {title: "电话", value: "电话"},
+                    {title: "邮箱", value: "邮箱"},
+                    {title: "网址", value: "网址"},
+                    {title: "地址", value: "地址"},
+                ]
+            },
+            manageInfo: {
+                title: "年报-经营信息",
+                data: [
+                    {title: "电话", value: "电话"},
+                    {title: "邮箱", value: "邮箱"},
+                    {title: "网址", value: "网址"},
+                    {title: "地址", value: "地址"},
+                ]
+            },
+            yearFundInfo: {
+                title: "年报-出资信息",
+                data: [
+                    {
+                        title: "企业名称展示在这里", data: [
+                            {name: "统一社会信用代码", value: "统一社会信用代码"},
+                            {name: "企业类型", value: "企业类型.3.21"},
+                            {name: "法定代表人", value: "法定代表人"},
+                            {name: "注册资金", value: "注册资金"},
+                            {name: "注册资金币种", value: "注册资金币种"},
+                            {name: "注销日期", value: "注销日期"},
+                            {name: "企业状态", value: "企业状态"},
+                        ]
+                    }, {
+                        title: "企业名称展示在这里", data: [
+                            {name: "统一社会信用代码", value: "统一社会信用代码"},
+                            {name: "企业类型", value: "企业类型.3.21"},
+                            {name: "法定代表人", value: "法定代表人"},
+                            {name: "注册资金", value: "注册资金"},
+                            {name: "注册资金币种", value: "注册资金币种"},
+                            {name: "注销日期", value: "注销日期"},
+                            {name: "企业状态", value: "企业状态"},
+                        ]
+                    },
+                ]
+            },
+            equityChange: {
+                title: " 年报-股权变更",
+                data: [
+                    {
+                        title: "企业名称展示在这里", data: [
+                            {name: "统一社会信用代码", value: "统一社会信用代码"},
+                            {name: "企业类型", value: "企业类型.3.21"},
+                            {name: "法定代表人", value: "法定代表人"},
+                            {name: "注册资金", value: "注册资金"},
+                            {name: "注册资金币种", value: "注册资金币种"},
+                            {name: "注销日期", value: "注销日期"},
+                            {name: "企业状态", value: "企业状态"},
+                        ]
+                    }, {
+                        title: "企业名称展示在这里", data: [
+                            {name: "统一社会信用代码", value: "统一社会信用代码"},
+                            {name: "企业类型", value: "企业类型.3.21"},
+                            {name: "法定代表人", value: "法定代表人"},
+                            {name: "注册资金", value: "注册资金"},
+                            {name: "注册资金币种", value: "注册资金币种"},
+                            {name: "注销日期", value: "注销日期"},
+                            {name: "企业状态", value: "企业状态"},
+                        ]
+                    },
+                ]
+            },
+            externalGuarantee: {
+                title: "年报-对外担保",
+                data: [
+                    {
+                        title: "企业名称展示在这里", data: [
+                            {name: "统一社会信用代码", value: "统一社会信用代码"},
+                            {name: "企业类型", value: "企业类型.3.21"},
+                            {name: "法定代表人", value: "法定代表人"},
+                            {name: "注册资金", value: "注册资金"},
+                            {name: "注册资金币种", value: "注册资金币种"},
+                            {name: "注销日期", value: "注销日期"},
+                            {name: "企业状态", value: "企业状态"},
+                        ]
+                    }, {
+                        title: "企业名称展示在这里", data: [
+                            {name: "统一社会信用代码", value: "统一社会信用代码"},
+                            {name: "企业类型", value: "企业类型.3.21"},
+                            {name: "法定代表人", value: "法定代表人"},
+                            {name: "注册资金", value: "注册资金"},
+                            {name: "注册资金币种", value: "注册资金币种"},
+                            {name: "注销日期", value: "注销日期"},
+                            {name: "企业状态", value: "企业状态"},
+                        ]
+                    },
+                ]
+            },
+            dishonestyPerInfo: {
+                title: "失信被执行人信息",
+                data: [
+                    {
+                        title: "企业名称展示在这里", data: [
+                            {name: "统一社会信用代码", value: "统一社会信用代码"},
+                            {name: "企业类型", value: "企业类型.3.21"},
+                            {name: "法定代表人", value: "法定代表人"},
+                            {name: "注册资金", value: "注册资金"},
+                            {name: "注册资金币种", value: "注册资金币种"},
+                            {name: "注销日期", value: "注销日期"},
+                            {name: "企业状态", value: "企业状态"},
+                        ]
+                    }, {
+                        title: "企业名称展示在这里", data: [
+                            {name: "统一社会信用代码", value: "统一社会信用代码"},
+                            {name: "企业类型", value: "企业类型.3.21"},
+                            {name: "法定代表人", value: "法定代表人"},
+                            {name: "注册资金", value: "注册资金"},
+                            {name: "注册资金币种", value: "注册资金币种"},
+                            {name: "注销日期", value: "注销日期"},
+                            {name: "企业状态", value: "企业状态"},
+                        ]
+                    },
+                ]
+            },
+            seriouslyIllegal: {
+                title: "严重违法",
+                data: [
+                    {
+                        title: "列入日期", value: "2020年3月1日", data: [
+                            {name: "统一社会信用代码", value: "统一社会信用代码"},
+                            {name: "企业类型", value: "企业类型.3.21"},
+                            {name: "法定代表人", value: "法定代表人"},
+                            {name: "注册资金", value: "注册资金"},
+                            {name: "注册资金币种", value: "注册资金币种"},
+                            {name: "注销日期", value: "注销日期"},
+                            {name: "企业状态", value: "企业状态"},
+                        ]
+                    }, {
+                        title: "列入日期", value: "2020年3月1日", data: [
+                            {name: "统一社会信用代码", value: "统一社会信用代码"},
+                            {name: "企业类型", value: "企业类型.3.21"},
+                            {name: "法定代表人", value: "法定代表人"},
+                            {name: "注册资金", value: "注册资金"},
+                            {name: "注册资金币种", value: "注册资金币种"},
+                            {name: "注销日期", value: "注销日期"},
+                            {name: "企业状态", value: "企业状态"},
+                        ]
+                    },
+                ]
+            },
+            abnormalOperation: {
+                title: "异常经营",
+                data: [
+                    {
+                        title: "列入日期", value: "2020年3月1日", data: [
+                            {name: "统一社会信用代码", value: "统一社会信用代码"},
+                            {name: "企业类型", value: "企业类型.3.21"},
+                            {name: "法定代表人", value: "法定代表人"},
+                            {name: "注册资金", value: "注册资金"},
+                            {name: "注册资金币种", value: "注册资金币种"},
+                            {name: "注销日期", value: "注销日期"},
+                            {name: "企业状态", value: "企业状态"},
+                        ]
+                    }, {
+                        title: "列入日期", value: "2020年3月1日", data: [
+                            {name: "统一社会信用代码", value: "统一社会信用代码"},
+                            {name: "企业类型", value: "企业类型.3.21"},
+                            {name: "法定代表人", value: "法定代表人"},
+                            {name: "注册资金", value: "注册资金"},
+                            {name: "注册资金币种", value: "注册资金币种"},
+                            {name: "注销日期", value: "注销日期"},
+                            {name: "企业状态", value: "企业状态"},
+                        ]
+                    },
+                ]
+            },
+            administrativePenalties: {
+                title: "行政处罚",
+                data: [
+                    {
+                        title: "列入日期", value: "2020年3月1日", data: [
+                            {name: "统一社会信用代码", value: "统一社会信用代码"},
+                            {name: "企业类型", value: "企业类型.3.21"},
+                            {name: "法定代表人", value: "法定代表人"},
+                            {name: "注册资金", value: "注册资金"},
+                            {name: "注册资金币种", value: "注册资金币种"},
+                            {name: "注销日期", value: "注销日期"},
+                            {name: "企业状态", value: "企业状态"},
+                        ]
+                    }, {
+                        title: "列入日期", value: "2020年3月1日", data: [
+                            {name: "统一社会信用代码", value: "统一社会信用代码"},
+                            {name: "企业类型", value: "企业类型.3.21"},
+                            {name: "法定代表人", value: "法定代表人"},
+                            {name: "注册资金", value: "注册资金"},
+                            {name: "注册资金币种", value: "注册资金币种"},
+                            {name: "注销日期", value: "注销日期"},
+                            {name: "企业状态", value: "企业状态"},
+                        ]
+                    },
+                ]
+            },
+            equityPledge: {
+                title: "股权出质",
+                data: [
+                    {
+                        title: "列入日期", value: "2020年3月1日", data: [
+                            {name: "统一社会信用代码", value: "统一社会信用代码"},
+                            {name: "企业类型", value: "企业类型.3.21"},
+                            {name: "法定代表人", value: "法定代表人"},
+                            {name: "注册资金", value: "注册资金"},
+                            {name: "注册资金币种", value: "注册资金币种"},
+                            {name: "注销日期", value: "注销日期"},
+                            {name: "企业状态", value: "企业状态"},
+                        ]
+                    }, {
+                        title: "列入日期", value: "2020年3月1日", data: [
+                            {name: "统一社会信用代码", value: "统一社会信用代码"},
+                            {name: "企业类型", value: "企业类型.3.21"},
+                            {name: "法定代表人", value: "法定代表人"},
+                            {name: "注册资金", value: "注册资金"},
+                            {name: "注册资金币种", value: "注册资金币种"},
+                            {name: "注销日期", value: "注销日期"},
+                            {name: "企业状态", value: "企业状态"},
+                        ]
+                    },
+                ]
+            },
         }
     }
 }
@@ -207,6 +502,11 @@ export default {
 
     .van-tab{
         opacity : 0.7;
+    }
+
+    .van-tab__pane-wrapper{
+        overflow : scroll;
+        height   : 553px
     }
 
     .van-tab--active{
