@@ -7,7 +7,7 @@
 <script>
 
 export default {
-    name : 'App',
+    name: 'App',
     watch: {
         $route(to, from){
             console.log(to, from)
@@ -18,21 +18,23 @@ export default {
 
 <style lang="less">
 body{
-    height: 100%;
-    width: 100%;
+    height : 100%;
+    width  : 100%;
 }
+
 #app{
     font-family             : Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing  : antialiased;
     -moz-osx-font-smoothing : grayscale;
-    height: 100%;
-    width: 100%;
-    display: flex;
+    height                  : 100%;
+    width                   : 100%;
+    display                 : flex;
 }
+
 .text-overflow{
-    word-break:keep-all;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
+    word-break    : keep-all;
+    white-space   : nowrap;
+    overflow      : hidden;
+    text-overflow : ellipsis;
 }
 </style>
