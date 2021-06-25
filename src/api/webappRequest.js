@@ -1,7 +1,7 @@
-var WebApp = window.WebApp
+const WebApp = window.WebApp
 
-export default function(){
-    return function({uri, parameter}){
+export default function (){
+    return function ({uri, parameter}){
         return new Promise((resolve, reject) => {
             WebApp.invoke(uri, 'post', JSON.stringify(parameter),
                 response => {
@@ -9,7 +9,7 @@ export default function(){
                     resolve(response)
                 }, err => {
                     console.error(err)
-                    reject(new Error('请求失败'))
+                    reject(new Error(err))
                 })
         })
     }
