@@ -1,6 +1,6 @@
 {
     "name": "shop",
-    "version": "0.1.0",
+    "version": "1.1.0",
     "private": true,
     "scripts": {
         "serve": "vue-cli-service serve",
@@ -9,10 +9,13 @@
     },
     "dependencies": {
         "core-js": "^3.6.5",
-        "vconsole-webpack-plugin": "^1.6.1",
-        "vue": "^2.6.11"
+        "vue": "^2.6.11",
+        "vue-router": "^3.4.8",
+        "vuex": "^3.5.1",
+        "fastclick": "^1.0.6"
     },
     "devDependencies": {
+        "vconsole-webpack-plugin": "^1.6.1",
         "@vue/cli-plugin-babel": "~4.5.0",
         "@vue/cli-plugin-eslint": "~4.5.0",
         "@vue/cli-service": "~4.5.0",
@@ -24,10 +27,10 @@
         "less": "^3.12.2",
         "less-loader": "^7.0.2",
         "mockjs": "^1.1.0",
+        "postcss": "^8.3.5",
+        "postcss-pxtorem": "^5.1.1",
         "vant": "^2.12.21",
-        "vue-router": "^3.4.8",
-        "vue-template-compiler": "^2.6.11",
-        "vuex": "^3.5.1"
+        "vue-template-compiler": "^2.6.11"
     },
     "eslintConfig": {
         "root": true,
