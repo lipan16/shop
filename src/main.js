@@ -18,14 +18,17 @@ Vue.mixin(baseMixin);
 
 new Promise((resolve, reject) => {
     if(process.env.VUE_APP_PROXY === 'YES'){ // webapp
-        Api.login().then((res) => {
+        Api.login().then(res => {
             console.log(res);
+            resolve();
         }, err => {
+            // this.$b_dialogAlert(err)
             console.log(err);
+            reject();
         });
-    }else{ // mobile
-        reject();
     }
+    // mobile
+    resolve();
 }).then(() => {
     new Vue({
         store: store,
